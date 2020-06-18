@@ -6,7 +6,7 @@ pub fn run() {
   let serrect = rng.gen_range(0, 100);
   println!("Random number: {}", serrect);
 
-  loop {
+  'looper: loop {
     let mut input = String::new();
     println!("Say something:");
     let mut _new_num = io::stdin()
@@ -19,7 +19,10 @@ pub fn run() {
     match guess.cmp(&serrect) {
       Ordering::Less => println!("Too small!"),
       Ordering::Greater => println!("Too big!"),
-      Ordering::Equal => println!("You win!"),
+      Ordering::Equal => {
+        println!("You win!");
+        break 'looper;
+      }
     }
   }
 }
